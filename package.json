@@ -1,0 +1,49 @@
+{
+	"name": "project-template-vue",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"packageManager": "pnpm@9.7.1",
+	"scripts": {
+		"prepare": "husky",
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"test": "vitest",
+		"lint": "pnpm /^lint:/",
+		"lint:es": "eslint",
+		"lint:css": "stylelint src/**/*.{css,vue}",
+		"optimize": "conjure all -r -m",
+		"optimize:icons": "conjure icons -m",
+		"optimize:images": "conjure images -r -m",
+		"optimize:favicons": "conjure favicons",
+		"version": "update-changelog"
+	},
+	"dependencies": {
+		"@fontsource-variable/fira-code": "^5.0.18",
+		"@fontsource-variable/inter": "^5.0.20",
+		"pinia": "^2.2.2",
+		"vue": "^3.4.38",
+		"vue-router": "^4.4.3"
+	},
+	"devDependencies": {
+		"@firefoxic/conjure": "^2.1.0",
+		"@firefoxic/eslint-config": "^2.2.0",
+		"@firefoxic/stylelint-config": "^4.0.0",
+		"@firefoxic/update-changelog": "^0.2.0",
+		"@firefoxic/utils": "^0.4.0",
+		"@vitejs/plugin-vue": "^5.1.2",
+		"@vue/test-utils": "^2.4.6",
+		"browserslist-to-esbuild": "^2.1.1",
+		"eslint": "^9.9.0",
+		"eslint-plugin-vue": "^9.27.0",
+		"husky": "^9.1.4",
+		"jsdom": "^24.1.1",
+		"postcss-lightningcss": "^1.0.1",
+		"postcss-url": "^10.1.3",
+		"stylelint": "^16.8.2",
+		"stylelint-config-html": "^1.1.0",
+		"vite": "^5.4.1",
+		"vitest": "^2.0.5"
+	}
+}

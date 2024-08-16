@@ -1,0 +1,69 @@
+:root {
+	--ex-adjusted: 0.5;
+	--adjust-factor: calc(var(--ex-adjusted) / var(--FontMain-Ex));
+	--cap-adjusted: calc(var(--FontMain-Cap) * var(--ex-adjusted) / var(--FontMain-Ex));
+	--half-delta: calc((var(--FontMain-Ascent) - var(--FontMain-Descent)) / 2);
+	--leading-trim-start: calc(0.5lh + 1em * var(--half-delta) * var(--adjust-factor) - 1em * var(--cap-adjusted));
+	--leading-trim-end: calc(0.5lh - 1em * var(--half-delta) * var(--adjust-factor));
+
+	line-height: 1.6;
+	font-family: var(--FontMain-Family);
+	font-size-adjust: ex-height var(--ex-adjusted);
+	text-size-adjust: 100%;
+	text-rendering: optimizelegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+p {
+	display: block flow-root;
+	margin-block: 1lh;
+	text-wrap: pretty;
+
+	:is(blockquote > &) {
+		margin: 0;
+	}
+}
+
+:is(code, pre, kbd, samp) {
+	font-family: var(--FontMono-Family);
+	font-size: 1em;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+	font-size: calc(1rem * (1 + pow(2, (2 - var(--heading-level)))));
+	line-height: 1.2;
+	font-family: var(--FontAccent-Family);
+	font-weight: calc((1 + 8 * log((var(--heading-level)), 6)) * 100);
+	text-wrap: balance;
+	hyphens: auto;
+	margin-block: 1rlh;
+
+	/* &:not(:where(h1, h2, h3, h4, h5, h6) + *) {
+		margin-block-start: 2rlh;
+	} */
+
+	&:where(h1) {
+		--heading-level: 1;
+	}
+
+	&:where(h2) {
+		--heading-level: 2;
+	}
+
+	&:where(h3) {
+		--heading-level: 3;
+	}
+
+	&:where(h4) {
+		--heading-level: 4;
+	}
+
+	&:where(h5) {
+		--heading-level: 5;
+	}
+
+	&:where(h6) {
+		--heading-level: 6;
+	}
+}

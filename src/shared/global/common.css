@@ -1,0 +1,36 @@
+body {
+	display: block grid;
+	place-items: center;
+	min-block-size: 100svb;
+	margin: 0;
+}
+
+#app { /* stylelint-disable-line */
+	--SectionGap: 2rem;
+	display: block grid;
+	grid-template-columns: repeat(var(--ColumnCount, 1), 1fr);
+	max-inline-size: 1280px;
+	margin-inline: auto;
+	padding: 2rem;
+	font-weight: normal;
+	gap: var(--SectionGap);
+
+	@media (width >= 1024px) {
+		--SectionGap: 10rem;
+		--ColumnCount: 2;
+
+		padding-inline: 2rem;
+	}
+}
+
+a {
+	color: var(--ColorUI-Accent);
+	transition: background-color 0.4s;
+	padding: 3px;
+
+	&:hover {
+		@media (hover: hover) {
+			background-color: oklch(from var(--ColorUI-Accent) l c h / 0.2);
+		}
+	}
+}

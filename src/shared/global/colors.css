@@ -1,0 +1,32 @@
+:root {
+	--ColorPalette-White: oklch(1 0 0);
+	--ColorPalette-black: oklch(0 0 0);
+
+	--ColorPalette-Green: oklch(0.7022 0.132 160.49);
+	--ColorPalette-Indigo: oklch(0.397 0.044 249);
+
+	--ColorUI-Accent: var(--ColorPalette-Green);
+	--ColorUI-Brand: oklch(0.397 0.044 249);
+
+	--ColorUI-Background:
+		light-dark(
+			oklch(from var(--ColorPalette-White) 0.96 c h),
+			oklch(from var(--ColorPalette-White) 0.18 c h)
+		);
+	--ColorUI-Border: oklch(from var(--ColorUI-Background) calc(0.55 * l + 0.275) c h);
+
+	--ColorUI-Text:
+		light-dark(
+			oklch(from var(--ColorPalette-White) 0.21 c h),
+			oklch(from var(--ColorPalette-White) 0.81 c h)
+		);
+	--ColorUI-Heading: oklch(from var(--ColorUI-Text) calc(1.4 * l - 0.2) c h);
+
+	color: var(--ColorUI-Text);
+	background: var(--ColorUI-Background);
+	accent-color: var(--ColorUI-Accent);
+	color-scheme: light dark;
+	transition:
+		color var(--motion-duration, 0.5s),
+		background-color var(--motion-duration, 0.5s);
+}

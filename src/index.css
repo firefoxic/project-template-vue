@@ -1,0 +1,9 @@
+@import "./shared/fonts/index.css";
+@import "./shared/global/colors.css";
+@import "./shared/global/motion.css";
+@import "./shared/global/common.css";
+@import "./shared/global/scroll-lock.css";
+@import "./shared/global/typography.css";
+@import "./shared/global/images.css";
+@import "./shared/global/focus.css";
+@import "./shared/icons/index.css";
