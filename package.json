@@ -37,7 +37,7 @@
 		"version": "update-changelog"
 	},
 	"dependencies": {
-		"@fontsource-variable/fira-code": "^5.0.18",
+		"@fontsource-variable/fira-code": "^5.0.19",
 		"@fontsource-variable/inter": "^5.0.20",
 		"pinia": "^2.2.2",
 		"vue": "^3.4.38",
@@ -45,7 +45,7 @@
 	},
 	"devDependencies": {
 		"@firefoxic/conjure": "^2.1.0",
-		"@firefoxic/eslint-config": "^2.2.0",
+		"@firefoxic/eslint-config": "^3.0.1",
 		"@firefoxic/stylelint-config": "^4.0.0",
 		"@firefoxic/update-changelog": "^0.2.0",
 		"@firefoxic/utils": "^0.4.0",

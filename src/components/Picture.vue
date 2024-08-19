@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 
-const props = defineProps({
+let props = defineProps({
 	"name": {
 		type: String,
 		required: true,
@@ -16,14 +16,14 @@ const props = defineProps({
 	},
 })
 
-const name = props.name
-const alt = props.alt
-const classList = props.class
+let name = props.name
+let alt = props.alt
+let classList = props.class
 
-const formats = ref([])
-const sizes = ref([])
-const maxDensity = ref(1)
-const dests = ref([])
+let formats = ref([])
+let sizes = ref([])
+let maxDensity = ref(1)
+let dests = ref([])
 
 function isLastFormat (index) {
 	return index === formats.value.length - 1
@@ -34,7 +34,7 @@ function isLastSize (index) {
 }
 
 function getImageSrc (imageName, breakpoint, format) {
-	const sourceName = `${imageName}${breakpoint ? `-` : ``}${breakpoint}@1x`
+	let sourceName = `${imageName}${breakpoint ? `-` : ``}${breakpoint}@1x`
 
 	return dests.value.find((path) => path.includes(sourceName) && path.endsWith(format))
 }
@@ -43,9 +43,9 @@ function getImageSrcset (imageName, breakpoint, format) {
 	let srcset = ``
 
 	for (let density = maxDensity.value; density !== 0; density--) {
-		const sourceName = `${imageName}${breakpoint ? `-` : ``}${breakpoint}@${density}x`
-		const destPath = dests.value.find((path) => path.includes(sourceName) && path.endsWith(format))
-		const descriptor = density !== 1 ? ` ${density}x` : ``
+		let sourceName = `${imageName}${breakpoint ? `-` : ``}${breakpoint}@${density}x`
+		let destPath = dests.value.find((path) => path.includes(sourceName) && path.endsWith(format))
+		let descriptor = density !== 1 ? ` ${density}x` : ``
 
 		srcset += `${srcset ? `, ` : ``}${destPath}${descriptor}`
 	}
@@ -54,7 +54,7 @@ function getImageSrcset (imageName, breakpoint, format) {
 }
 
 onMounted(async () => {
-	const imageData = await import(`../shared/images/${name}.js`).then((m) => m.default)
+	let imageData = await import(`../shared/images/${name}.js`).then((m) => m.default)
 
 	formats.value = imageData.formats
 	sizes.value = imageData.sizes
