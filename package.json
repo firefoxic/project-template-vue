@@ -22,7 +22,7 @@
 	},
 	"packageManager": "pnpm@9.7.1",
 	"scripts": {
-		"prepare": "husky",
+		"prepare": "git config core.hooksPath .git-hooks || echo 'Not in a git repo'",
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -54,7 +54,6 @@
 		"browserslist-to-esbuild": "^2.1.1",
 		"eslint": "^9.9.0",
 		"eslint-plugin-vue": "^9.27.0",
-		"husky": "^9.1.4",
 		"jsdom": "^24.1.1",
 		"postcss-lightningcss": "^1.0.1",
 		"postcss-url": "^10.1.3",
