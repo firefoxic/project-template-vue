@@ -1,6 +1,21 @@
 {
-  "recommendations": [
-    "Vue.volar",
-    "dbaeumer.vscode-eslint"
-  ]
+	"recommendations": [
+		"vue.volar",
+		"antfu.vite",
+		"vitest.explorer",
+		"ms-playwright.playwright",
+		"mhutchie.git-graph",
+		"EditorConfig.EditorConfig",
+		"webben.browserslist",
+		"oxc.oxc-vscode",
+		"dbaeumer.vscode-eslint",
+		"stylelint.vscode-stylelint",
+		"davidanson.vscode-markdownlint",
+		"vitaliymaz.vscode-svg-previewer",
+	],
+	"unwantedRecommendations": [
+		"biomejs.biome",
+		"esbenp.prettier-vscode",
+		"hookyqr.beautify",
+	]
 }
