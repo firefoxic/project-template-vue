@@ -1,9 +1,18 @@
+import { readFileSync } from "node:fs"
 import { fileURLToPath, URL } from "node:url"
 
-import browserslistToEsbuild from "browserslist-to-esbuild"
-import { defineConfig } from "vite"
 import { getProjectRoot } from "@firefoxic/utils"
 import vue from "@vitejs/plugin-vue"
+import browserslist from "browserslist"
+import browserslistToEsbuild from "browserslist-to-esbuild"
+import { browserslistToTargets } from "lightningcss"
+import { defineConfig } from "vite"
+
+let queries = readFileSync(`./.browserslistrc`, `utf8`)
+	.split(`\n`)
+	.filter((line) => line !== `` || line.startsWith(`#`))
+	.join(`,`)
+let targets = browserslistToTargets(browserslist(queries))
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,12 +24,16 @@ export default defineConfig({
 		},
 	},
 	build: {
-		assetsInlineLimit: 0,
 		cssMinify: undefined,
 		target: browserslistToEsbuild(),
 	},
 	css: {
-		transformer: `postcss`,
+		lightningcss: {
+			cssModules: true,
+			minify: false,
+			targets,
+		},
+		transformer: `lightningcss`,
 	},
 	clearScreen: false,
 })
