@@ -1,13 +1,13 @@
 :root {
 	--ex-adjusted: 0.5;
-	--adjust-factor: calc(var(--ex-adjusted) / var(--FontMain-Ex));
-	--cap-adjusted: calc(var(--FontMain-Cap) * var(--ex-adjusted) / var(--FontMain-Ex));
-	--half-delta: calc((var(--FontMain-Ascent) - var(--FontMain-Descent)) / 2);
+	--adjust-factor: calc(var(--ex-adjusted) / var(--font-main-ex));
+	--cap-adjusted: calc(var(--font-main-cap) * var(--ex-adjusted) / var(--font-main-ex));
+	--half-delta: calc((var(--font-main-ascent) - var(--font-main-descent)) / 2);
 	--leading-trim-start: calc(0.5lh + 1em * var(--half-delta) * var(--adjust-factor) - 1em * var(--cap-adjusted));
 	--leading-trim-end: calc(0.5lh - 1em * var(--half-delta) * var(--adjust-factor));
 
 	line-height: 1.6;
-	font-family: var(--FontMain-Family);
+	font-family: var(--font-main-family);
 	font-size-adjust: ex-height var(--ex-adjusted);
 	text-size-adjust: 100%;
 	text-rendering: optimizelegibility;
@@ -26,14 +26,14 @@ p {
 }
 
 :is(code, pre, kbd, samp) {
-	font-family: var(--FontMono-Family);
+	font-family: var(--font-mono-family);
 	font-size: 1em;
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
 	font-size: calc(1rem * (1 + pow(2, (2 - var(--heading-level)))));
 	line-height: 1.2;
-	font-family: var(--FontAccent-Family);
+	font-family: var(--font-accent-family);
 	font-weight: calc((1 + 8 * log((var(--heading-level)), 6)) * 100);
 	text-wrap: balance;
 	hyphens: auto;

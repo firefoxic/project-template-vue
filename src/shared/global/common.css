@@ -6,24 +6,22 @@ body {
 }
 
 [id="app"] {
-	--SectionGap: 2rem;
 	display: block grid;
-	grid-template-columns: repeat(var(--ColumnCount, 1), 1fr);
 	max-inline-size: 50rem;
 	margin-inline: auto;
 	padding: 2rem;
 	font-weight: normal;
-	gap: var(--SectionGap);
+	gap: 2rem;
 }
 
 a {
-	color: var(--ColorUI-Accent);
+	color: var(--color-ui-accent);
 	transition: background-color 0.4s;
 	padding: 3px;
 
 	&:hover {
 		@media (hover: hover) {
-			background-color: oklch(from var(--ColorUI-Accent) l c h / 0.2);
+			background-color: oklch(from var(--color-ui-accent) l c h / 0.2);
 		}
 	}
 }

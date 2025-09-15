@@ -2,21 +2,21 @@
 @import "@fontsource-variable/fira-code/wght.css";
 
 :root {
-	--FontMain-Family: inter variable, ui-sans-serif, sans-serif;
-	--FontMain-Ex: 0.545454545;
-	--FontMain-Cap: 0.727272727;
-	--FontMain-Ascent: 0.96875;
-	--FontMain-Descent: 0.241477273;
+	--font-main-family: inter variable, ui-sans-serif, sans-serif;
+	--font-main-ex: 0.545454545;
+	--font-main-cap: 0.727272727;
+	--font-main-ascent: 0.96875;
+	--font-main-descent: 0.241477273;
 
-	--FontAccent-Family: var(--FontMain-Family);
-	--FontAccent-Ex: var(--FontMain-Ex);
-	--FontAccent-Cap: var(--FontMain-Cap);
-	--FontAccent-Ascent: var(--FontMain-Ascent);
-	--FontAccent-Descent: var(--FontMain-Descent);
+	--font-accent-family: var(--font-main-family);
+	--font-accent-ex: var(--font-main-ex);
+	--font-accent-cap: var(--font-main-cap);
+	--font-accent-ascent: var(--font-main-ascent);
+	--font-accent-descent: var(--font-main-descent);
 
-	--FontMono-Family: fira code variable, ui-monospace, monospace, monospace;
-	--FontMono-Ex: 0.5265;
-	--FontMono-Cap: 0.6885;
-	--FontMono-Ascent: 0.99;
-	--FontMono-Descent: 0.322;
+	--font-mono-family: fira code variable, ui-monospace, monospace, monospace;
+	--font-mono-ex: 0.5265;
+	--font-mono-cap: 0.6885;
+	--font-mono-ascent: 0.99;
+	--font-mono-descent: 0.322;
 }

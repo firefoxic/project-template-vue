@@ -1,30 +1,30 @@
 :root {
-	--ColorPalette-White: oklch(1 0 0);
-	--ColorPalette-black: oklch(0 0 0);
+	--color-palette-white: oklch(1 0 0);
+	--color-palette-black: oklch(0 0 0);
 
-	--ColorPalette-Green: oklch(0.7022 0.132 160.49);
-	--ColorPalette-Indigo: oklch(0.397 0.044 249);
+	--color-palette-green: oklch(0.7022 0.132 160.49);
+	--color-palette-indigo: oklch(0.397 0.044 249);
 
-	--ColorUI-Accent: var(--ColorPalette-Green);
-	--ColorUI-Brand: oklch(0.397 0.044 249);
+	--color-ui-accent: var(--color-palette-green);
+	--color-ui-brand: oklch(0.397 0.044 249);
 
-	--ColorUI-Background:
+	--color-ui-background:
 		light-dark(
-			oklch(from var(--ColorPalette-White) 0.96 c h),
-			oklch(from var(--ColorPalette-White) 0.18 c h)
+			oklch(from var(--color-palette-white) 0.96 c h),
+			oklch(from var(--color-palette-white) 0.18 c h)
 		);
-	--ColorUI-Border: oklch(from var(--ColorUI-Background) calc(0.55 * l + 0.275) c h);
+	--color-ui-border: oklch(from var(--color-ui-background) calc(0.55 * l + 0.275) c h);
 
-	--ColorUI-Text:
+	--color-ui-text:
 		light-dark(
-			oklch(from var(--ColorPalette-White) 0.21 c h),
-			oklch(from var(--ColorPalette-White) 0.81 c h)
+			oklch(from var(--color-palette-white) 0.21 c h),
+			oklch(from var(--color-palette-white) 0.81 c h)
 		);
-	--ColorUI-Heading: oklch(from var(--ColorUI-Text) calc(1.4 * l - 0.2) c h);
+	--color-ui-heading: oklch(from var(--color-ui-text) calc(1.4 * l - 0.2) c h);
 
-	color: var(--ColorUI-Text);
-	background: var(--ColorUI-Background);
-	accent-color: var(--ColorUI-Accent);
+	color: var(--color-ui-text);
+	background: var(--color-ui-background);
+	accent-color: var(--color-ui-accent);
 	color-scheme: light dark;
 	transition:
 		color var(--motion-duration, 0.5s),
