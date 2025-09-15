@@ -24,7 +24,7 @@ defineProps({
 h1 {
 	font-weight: 280;
 	margin: 0em;
-	color: var(--ColorUI-Accent);
+	color: var(--color-ui-accent);
 }
 
 p {

@@ -1,5 +1,5 @@
-import eslintPluginVue from "eslint-plugin-vue"
 import { default as firefoxicEslintConfig, globals } from "@firefoxic/eslint-config"
+import eslintPluginVue from "eslint-plugin-vue"
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -70,13 +70,12 @@ export default [
 					html: {
 						"void": `never`,
 						"normal": `never`,
-						"component": `always`,
+						"component": `never`,
 					},
 					svg: `always`,
 					math: `always`,
 				},
 			],
-			"vue/multi-word-component-names": `off`,
 		},
 	},
 ]

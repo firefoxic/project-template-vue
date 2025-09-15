@@ -1,20 +1,11 @@
 <script setup>
-import Picture from "../components/Picture.vue"
+import ThePicture from "../components/the-picture.vue"
 </script>
 
 <template>
-	<div class="about">
+	<main>
 		<h2>This is an about page</h2>
 
-		<Picture name="eclipse" class="Image" alt="Eclipse" />
-	</div>
+		<the-picture name="eclipse" class="Image" alt="Eclipse"></the-picture>
+	</main>
 </template>
-
-<style>
-.about {
-	@media (width >= 1024px) {
-		display: block grid;
-		align-items: center;
-	}
-}
-</style>
