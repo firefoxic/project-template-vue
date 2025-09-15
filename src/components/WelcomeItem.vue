@@ -37,19 +37,6 @@ let props = defineProps({ // eslint-disable-line
 	&:last-of-type {
 		--IsLastItem: 1;
 	}
-
-	@media (width >= 1024px) {
-		&::before {
-			content: "";
-			position: absolute;
-			border-inline-start: 1px solid var(--ColorUI-Border);
-			inset-inline: calc((-1px - var(--SectionGap)) / 2) 100%;
-			inset-block: calc(-1 * var(--List-Gap));
-			z-index: -1;
-			scale: 1 calc(1 - 0.5 * (var(--IsFirstItem, 0) + var(--IsLastItem, 0)));
-			translate: 0 calc(50% * (0.5 - var(--IsLastItem, 0)) * (var(--IsFirstItem, 0) + var(--IsLastItem, 0)));
-		}
-	}
 }
 
 .icon {
@@ -61,17 +48,6 @@ let props = defineProps({ // eslint-disable-line
 	place-content: center;
 	inline-size: var(--Icon-Size, 2rem);
 	aspect-ratio: 1;
-
-	@media (width >= 1024px) {
-		--Icon-Size: 3rem;
-
-		place-self: center;
-		margin-inline-start: calc(-1 * var(--Icon-Size));
-		border: 1px solid var(--ColorUI-Border);
-		background: var(--ColorUI-Background);
-		border-radius: 0.5rem;
-		translate: calc((var(--Icon-Size) - var(--SectionGap)) / 2) 0;
-	}
 }
 
 h2 {

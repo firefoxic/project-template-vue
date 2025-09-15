@@ -5,22 +5,15 @@ body {
 	margin: 0;
 }
 
-#app { /* stylelint-disable-line */
+[id="app"] {
 	--SectionGap: 2rem;
 	display: block grid;
 	grid-template-columns: repeat(var(--ColumnCount, 1), 1fr);
-	max-inline-size: 1280px;
+	max-inline-size: 50rem;
 	margin-inline: auto;
 	padding: 2rem;
 	font-weight: normal;
 	gap: var(--SectionGap);
-
-	@media (width >= 1024px) {
-		--SectionGap: 10rem;
-		--ColumnCount: 2;
-
-		padding-inline: 2rem;
-	}
 }
 
 a {
