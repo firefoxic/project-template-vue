@@ -21,19 +21,13 @@
 		"node": ">=22.18"
 	},
 	"scripts": {
-		"prepare": "git config core.hooksPath .githooks",
-		"version": "update-changelog",
-		"dev": "vite",
-		"build": "vite build",
-		"preview": "vite preview",
+		"vite": "vite",
 		"test": "vitest",
-		"lint": "pnpm /^lint:/",
-		"lint:es": "eslint",
-		"lint:css": "stylelint src/**/*.{css,vue}",
-		"optimize": "conjure all -r -m",
-		"optimize:icons": "conjure icons -m",
-		"optimize:images": "conjure images -r -m",
-		"optimize:favicons": "conjure favicons"
+		"eslint": "eslint",
+		"stylelint": "stylelint src/**/*.{css,vue}",
+		"version": "update-changelog",
+		"prepare": "make setup",
+		"help": "make help"
 	},
 	"dependencies": {
 		"@fontsource-variable/fira-code": "^5.2.6",
