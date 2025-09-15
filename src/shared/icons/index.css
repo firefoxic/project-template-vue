@@ -1,28 +1,28 @@
-@property --Icon_shape_book {
+@property --icon-shape-book {
 	syntax: "<url>";
 	inherits: false;
 	initial-value: url("./book.svg");
 }
 
-@property --Icon_shape_chat {
+@property --icon-shape-chat {
 	syntax: "<url>";
 	inherits: false;
 	initial-value: url("./chat.svg");
 }
 
-@property --Icon_shape_cube {
+@property --icon-shape-cube {
 	syntax: "<url>";
 	inherits: false;
 	initial-value: url("./cube.svg");
 }
 
-@property --Icon_shape_heart {
+@property --icon-shape-heart {
 	syntax: "<url>";
 	inherits: false;
 	initial-value: url("./heart.svg");
 }
 
-@property --Icon_shape_toolbox {
+@property --icon-shape-toolbox {
 	syntax: "<url>";
 	inherits: false;
 	initial-value: url("./toolbox.svg");

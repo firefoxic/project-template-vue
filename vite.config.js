@@ -36,4 +36,8 @@ export default defineConfig({
 		transformer: `lightningcss`,
 	},
 	clearScreen: false,
+	server: {
+		open: true,
+		port: 3000,
+	},
 })

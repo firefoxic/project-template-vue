@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { images } from "../shared/data.json" with { type: "json" }
 
 let props = defineProps({
 	"name": {
@@ -14,37 +14,38 @@ let props = defineProps({
 		"type": String,
 		"default": ``,
 	},
+	"loading": {
+		"type": String,
+		"default": `lazy`,
+	},
+	"decoding": {
+		"type": String,
+		"default": `async`,
+	},
 })
 
-let name = props.name
-let alt = props.alt
-let classList = props.class
+let { name, alt, class: classList, loading, decoding } = props
+let { maxDensity, sizes, formats } = images[name]
 
-let formats = ref([])
-let sizes = ref([])
-let maxDensity = ref(1)
-let dests = ref([])
+function isTagImg (formatIndex, sizeIndex) {
+	let isLastFormat = formatIndex === formats.length - 1
+	let isLastSize = sizeIndex === sizes.length - 1
 
-function isLastFormat (index) {
-	return index === formats.value.length - 1
+	return isLastFormat && isLastSize
 }
 
-function isLastSize (index) {
-	return index === sizes.value.length - 1
+function getSrcValue (imageName, breakpoint, format) {
+	return `/images/${imageName}${breakpoint ? `~` : ``}${breakpoint}@1x.${format}`
 }
 
-function getImageSrc (imageName, breakpoint, format) {
-	let sourceName = `${imageName}${breakpoint ? `-` : ``}${breakpoint}@1x`
-
-	return dests.value.find((path) => path.includes(sourceName) && path.endsWith(format))
-}
-
-function getImageSrcset (imageName, breakpoint, format) {
+function getSrcsetValue (imageName, breakpoint, format, isImg) {
 	let srcset = ``
 
-	for (let density = maxDensity.value; density !== 0; density--) {
-		let sourceName = `${imageName}${breakpoint ? `-` : ``}${breakpoint}@${density}x`
-		let destPath = dests.value.find((path) => path.includes(sourceName) && path.endsWith(format))
+	for (let density = maxDensity; density !== 0; density--) {
+		if (isImg && density === 1) continue
+
+		let sourceName = `${imageName}${breakpoint ? `~` : ``}${breakpoint}@${density}x`
+		let destPath = `/images/${sourceName}.${format}`
 		let descriptor = density !== 1 ? ` ${density}x` : ``
 
 		srcset += `${srcset ? `, ` : ``}${destPath}${descriptor}`
@@ -52,52 +53,30 @@ function getImageSrcset (imageName, breakpoint, format) {
 
 	return srcset
 }
-
-onMounted(async () => {
-	let imageData = await import(`../shared/images/${name}.js`).then((m) => m.default)
-
-	formats.value = imageData.formats
-	sizes.value = imageData.sizes
-	maxDensity.value = imageData.maxDensity
-
-	dests.value = await Promise.all(
-		imageData.paths.map(async (path) => {
-			let module
-
-			if (path.endsWith(`.avif`)) {
-				module = await import(`../shared/images/${path.slice(2, -5)}.avif`)
-			}
-
-			if (path.endsWith(`.webp`)) {
-				module = await import(`../shared/images/${path.slice(2, -5)}.webp`)
-			}
-
-			return module.default
-		}),
-	)
-})
 </script>
 
 <template>
-	<picture v-if="dests.length">
+	<picture v-if="sizes.length">
 		<template v-for="(format, formatIndex) in formats" :key="formatIndex">
 			<template v-for="({ breakpoint = '', width, height }, sizeIndex) in sizes" :key="sizeIndex">
 				<img
-					v-if="isLastFormat(formatIndex) && isLastSize(sizeIndex)"
+					v-if="isTagImg(formatIndex, sizeIndex)"
 					:class="classList"
-					:src="getImageSrc(name, breakpoint, format)"
-					:srcset="getImageSrcset(name, breakpoint, format)"
-					:width="width"
-					:height="height"
-					:alt="alt || ''"
+					:src="getSrcValue(name, breakpoint, format)"
+					:srcset="getSrcsetValue(name, breakpoint, format, () => isTagImg(formatIndex, sizeIndex))"
+					:width
+					:height
+					:loading
+					:decoding
+					:alt
 				>
 				<source
 					v-else
-					:srcset="getImageSrcset(name, breakpoint, format)"
+					:srcset="getSrcsetValue(name, breakpoint, format)"
 					:type="`image/${format}`"
-					:width="width"
-					:height="height"
-					:media="breakpoint ? `(width >= ${breakpoint}px)` : undefined"
+					:width
+					:height
+					:media="breakpoint ? `(width <= ${breakpoint}px)` : undefined"
 				>
 			</template>
 		</template>

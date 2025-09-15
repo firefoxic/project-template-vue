@@ -9,7 +9,7 @@ let props = defineProps({
 })
 
 let computedStyle = computed(() => ({
-	"--Icon": `var(--Icon_shape_${props.shape})`,
+	"--icon": `var(--icon-shape-${props.shape})`,
 }))
 </script>
 
@@ -23,6 +23,6 @@ span {
 	inline-size: 100%;
 	aspect-ratio: 1;
 	background: currentcolor;
-	mask: var(--Icon) center / contain no-repeat;
+	mask: var(--icon) center / contain no-repeat;
 }
 </style>
