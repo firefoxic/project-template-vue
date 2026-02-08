@@ -1,5 +1,5 @@
 <script setup>
-import ThePicture from "../components/the-picture.vue"
+import ThePicture from "@/components/the-picture.vue"
 </script>
 
 <template>

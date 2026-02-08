@@ -1,5 +1,5 @@
 <script setup>
-import { images } from "../shared/data.json" with { type: "json" }
+import { images } from "@/shared/data.json" with { type: "json" }
 
 let props = defineProps({
 	"name": {
