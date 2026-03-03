@@ -1,7 +1,7 @@
-import "./index.css"
+import "./index.css" // eslint-disable-line simple-import-sort/imports
 
-import { createApp } from "vue"
 import { createPinia } from "pinia"
+import { createApp } from "vue"
 
 import App from "./App.vue"
 import router from "./router"

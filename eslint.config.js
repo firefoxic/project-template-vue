@@ -38,7 +38,7 @@ export default [
 	{
 		rules: {
 			"no-irregular-whitespace": `off`,
-			"@stylistic/js/semi": [
+			"@stylistic/semi": [
 				`error`,
 				`never`,
 				{ beforeStatementContinuationChars: `any` },
@@ -66,7 +66,8 @@ export default [
 				},
 			],
 			"vue/html-self-closing": [
-				`error`, {
+				`error`,
+				{
 					html: {
 						"void": `never`,
 						"normal": `never`,
