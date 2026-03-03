@@ -1,13 +1,19 @@
+export PATH := ./node_modules/.bin:$(PATH)
+
+help: ## 🧾 Print this message
+	$(call print_help)
+.PHONY: help
+
 start: ## 🚀 Start the project in development mode
-	@trap "exit 0" INT; node --run vite
+	@trap "exit 0" INT; vite
 .PHONY: start
 
 build: ## 🏗️  Build the project for production
-	@node --run vite -- build
+	@vite build
 .PHONY: build
 
 preview: build ## 🧐 Preview the production built
-	@node --run vite -- preview
+	@vite preview
 .PHONY: preview
 
 clean: ## 🧹 Clean the project
@@ -16,8 +22,8 @@ clean: ## 🧹 Clean the project
 
 lint: ## 🧬 Check code by eslint and stylelint
 	@bash -c '\
-		node --run eslint & pid1=$$! ; \
-		node --run stylelint & pid2=$$! ; \
+		eslint & pid1=$$! ; \
+		stylelint "src/**/*.{css,vue}" & pid2=$$! ; \
 		wait $$pid1 ; code1=$$? ; \
 		wait $$pid2 ; code2=$$? ; \
 		if [ $$code1 -ne 0 ] || [ $$code2 -ne 0 ]; then exit 1 ; fi \
@@ -26,8 +32,8 @@ lint: ## 🧬 Check code by eslint and stylelint
 
 fix: ## 🩹 Fix code by eslint and stylelint
 	@bash -c '\
-		node --run eslint -- --fix & pid1=$$! ; \
-		node --run stylelint -- --fix & pid2=$$! ; \
+		eslint --fix & pid1=$$! ; \
+		stylelint "src/**/*.{css,vue}" --fix & pid2=$$! ; \
 		wait $$pid1 ; code1=$$? ; \
 		wait $$pid2 ; code2=$$? ; \
 		if [ $$code1 -ne 0 ] || [ $$code2 -ne 0 ]; then exit 1 ; fi \
@@ -35,11 +41,11 @@ fix: ## 🩹 Fix code by eslint and stylelint
 .PHONY: fix
 
 test: lint ## 🧪 Run tests
-	@node --run test
+	@vitest
 .PHONY: test
 
 optimize: ## 🖼️  Optimize graphic assets
-	@pnpm exec optimize assets
+	@optimize assets
 .PHONY: optimize
 
 setup: ## 🛠️  Setup the project environment
@@ -49,26 +55,6 @@ setup: ## 🛠️  Setup the project environment
 	$(call install_dependencies)
 	$(call setup_githooks)
 .PHONY: setup
-
-help: ## 🧾 Print this message
-	@printf "\n\t📜 $(ANSI_BOLD)Available targets:$(ANSI_RESET)\n\n"
-	@grep -E '^[a-zA-Z0-9_-]+:.*?## ' $(MAKEFILE_LIST) \
-	| awk -F ':|##' '\
-	BEGIN { \
-		ANSI_BOLD_CYAN = "$(ANSI_BOLD_CYAN)"; \
-		ANSI_RESET = "$(ANSI_RESET)"; \
-	} \
-	{ \
-		targets[NR]=$$1; descs[NR]=$$3; \
-		if (length($$1) > max) max = length($$1); \
-	} \
-	END { \
-		for (i = 1; i <= NR; i++) { \
-			printf "\t%s%" max "s%s —%s\n", ANSI_BOLD_CYAN, targets[i], ANSI_RESET, descs[i]; \
-		} \
-		printf "\n" \
-	}'
-.PHONY: help
 
 ANSI_RESET := \033[0m
 ANSI_BOLD := \033[1m
@@ -93,4 +79,24 @@ endef
 
 define setup_githooks
 	@git config --local core.hooksPath .githooks
+endef
+
+define print_help
+	@printf "\n\t📜 $(ANSI_BOLD)Available targets:$(ANSI_RESET)\n\n"
+	@grep -E '^[a-zA-Z0-9_-]+:.*?## ' $(MAKEFILE_LIST) \
+	| awk -F ':|##' '\
+	BEGIN { \
+		ANSI_BOLD_CYAN = "$(ANSI_BOLD_CYAN)"; \
+		ANSI_RESET = "$(ANSI_RESET)"; \
+	} \
+	{ \
+		targets[NR]=$$1; descs[NR]=$$3; \
+		if (length($$1) > max) max = length($$1); \
+	} \
+	END { \
+		for (i = 1; i <= NR; i++) { \
+			printf "\t%s%" max "s%s —%s\n", ANSI_BOLD_CYAN, targets[i], ANSI_RESET, descs[i]; \
+		} \
+		printf "\n" \
+	}'
 endef
