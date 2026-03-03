@@ -22,13 +22,9 @@
 		"pnpm": ">=10.30"
 	},
 	"scripts": {
-		"vite": "vite",
-		"test": "vitest",
-		"eslint": "eslint",
-		"stylelint": "stylelint src/**/*.{css,vue}",
+		"help": "make help",
 		"version": "update-changelog",
-		"prepare": "make setup",
-		"help": "make help"
+		"prepare": "make setup"
 	},
 	"dependencies": {
 		"@fontsource-variable/fira-code": "^5.2.6",
