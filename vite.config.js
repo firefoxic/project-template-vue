@@ -24,13 +24,11 @@ export default defineConfig({
 		},
 	},
 	build: {
-		cssMinify: undefined,
+		cssMinify: `lightningcss`,
 		target: browserslistToEsbuild(),
 	},
 	css: {
 		lightningcss: {
-			cssModules: true,
-			minify: false,
 			targets,
 		},
 		transformer: `lightningcss`,

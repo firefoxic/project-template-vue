@@ -1,5 +1,5 @@
 <script setup>
-let props = defineProps({ // eslint-disable-line
+let props = defineProps({
 	shape: {
 		type: String,
 		required: true,
