@@ -1,0 +1,55 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"extends": [
+		"./node_modules/@firefoxic/oxlint-config/lib/syntactic.jsonc",
+		"./node_modules/@firefoxic/oxlint-config/lib/stylistic.jsonc",
+	],
+	"plugins": [
+		"vitest",
+		"vue",
+	],
+	"overrides": [
+		{
+			"files": [
+				"src/**/*.js"
+			],
+			"env": {
+				"browser": true,
+			},
+		},
+		{
+			"files": [
+				"!src/**/*.js"
+			],
+			"env": {
+				"node": true,
+			},
+		},
+		{
+			"files": [
+				"src/**/*.vue",
+				"src/index.js"
+			],
+			"env": {
+				"vue": true,
+			},
+			"rules": {
+				"import/unambiguous": "off",
+				"import/no-unassigned-import": [
+					"error",
+					{
+						"allow": ["**/*.css"],
+					},
+				],
+				"@stylistic/no-multiple-empty-lines": [
+					"error",
+					{
+						"max": 1,
+						"maxEOF": 0,
+						"maxBOF": 1,
+					},
+				],
+			},
+		},
+	],
+}

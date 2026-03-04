@@ -1,6 +1,7 @@
 <script setup>
 import { images } from "@/shared/data.json" with { type: "json" }
 
+// oxlint-disable-next-line vue/max-props
 let props = defineProps({
 	"name": {
 		type: String,
@@ -41,12 +42,12 @@ function getSrcValue (imageName, breakpoint, format) {
 function getSrcsetValue (imageName, breakpoint, format, isImg) {
 	let srcset = ``
 
-	for (let density = maxDensity; density !== 0; density--) {
+	for (let density = maxDensity; density !== 0; density -= 1) {
 		if (isImg && density === 1) continue
 
 		let sourceName = `${imageName}${breakpoint ? `~` : ``}${breakpoint}@${density}x`
 		let destPath = `/images/${sourceName}.${format}`
-		let descriptor = density !== 1 ? ` ${density}x` : ``
+		let descriptor = density === 1 ? `` : ` ${density}x`
 
 		srcset += `${srcset ? `, ` : ``}${destPath}${descriptor}`
 	}
