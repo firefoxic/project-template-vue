@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ThePicture from "@/components/the-picture.vue"
 </script>
 

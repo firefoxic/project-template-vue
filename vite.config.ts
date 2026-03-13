@@ -7,6 +7,7 @@ import browserslist from "browserslist"
 import browserslistToEsbuild from "browserslist-to-esbuild"
 import { browserslistToTargets } from "lightningcss"
 import { defineConfig } from "vite"
+import vueDevTools from "vite-plugin-vue-devtools"
 
 let queries = readFileSync(`./.browserslistrc`, `utf8`)
 	.split(`\n`)
@@ -14,10 +15,10 @@ let queries = readFileSync(`./.browserslistrc`, `utf8`)
 	.join(`,`)
 let targets = browserslistToTargets(browserslist(queries))
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
 	base: getProjectRoot(),
-	plugins: [vue()],
+	plugins: [vue(), vueDevTools()],
 	resolve: {
 		alias: {
 			"@/": fileURLToPath(new URL(`./src/`, import.meta.url)),

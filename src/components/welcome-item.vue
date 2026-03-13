@@ -1,10 +1,7 @@
-<script setup>
-let props = defineProps({
-	shape: {
-		type: String,
-		required: true,
-	},
-})
+<script setup lang="ts">
+// let { shape } = defineProps<{
+// 	shape: string,
+// }>()
 </script>
 
 <template>

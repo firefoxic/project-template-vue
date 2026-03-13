@@ -11,7 +11,7 @@
 	"overrides": [
 		{
 			"files": [
-				"src/**/*.js"
+				"src/**/*.{js,ts}",
 			],
 			"env": {
 				"browser": true,
@@ -19,7 +19,8 @@
 		},
 		{
 			"files": [
-				"!src/**/*.js"
+				"**/*.{js,ts}",
+				"!src/**/*.{js,ts}",
 			],
 			"env": {
 				"node": true,
@@ -28,7 +29,7 @@
 		{
 			"files": [
 				"src/**/*.vue",
-				"src/index.js"
+				"src/index.{js,ts}"
 			],
 			"env": {
 				"vue": true,
@@ -38,7 +39,9 @@
 				"import/no-unassigned-import": [
 					"error",
 					{
-						"allow": ["**/*.css"],
+						"allow": [
+							"**/*.css"
+						],
 					},
 				],
 				"@stylistic/no-multiple-empty-lines": [
@@ -49,6 +52,14 @@
 						"maxBOF": 1,
 					},
 				],
+			},
+		},
+		{
+			"files": [
+				"env.d.ts"
+			],
+			"rules": {
+				"import/unambiguous": "off",
 			},
 		},
 	],

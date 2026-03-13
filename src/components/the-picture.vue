@@ -1,51 +1,40 @@
-<script setup>
+<script setup lang="ts">
 import { images } from "@/shared/data.json" with { type: "json" }
 
-// oxlint-disable-next-line vue/max-props
-let props = defineProps({
-	"name": {
-		type: String,
-		required: true,
-	},
-	"alt": {
-		"type": String,
-		"default": ``,
-	},
-	"class": {
-		"type": String,
-		"default": ``,
-	},
-	"loading": {
-		"type": String,
-		"default": `lazy`,
-	},
-	"decoding": {
-		"type": String,
-		"default": `async`,
-	},
-})
+type ImageName = keyof typeof images
 
-let { name, alt, class: classList, loading, decoding } = props
-let { maxDensity, sizes, formats } = images[name]
+type PictureProps = {
+	"name": ImageName,
+	"alt"?: string,
+	"class"?: string,
+	"loading"?: `lazy` | `eager`,
+	"decoding"?: `async` | `auto` | `sync`,
+}
 
-function isTagImg (formatIndex, sizeIndex) {
+let { name, alt = ``, class: classList = ``, loading = `lazy`, decoding = `async` } = defineProps<PictureProps>()
+
+let { maxDensity, formats, sizes } = images[name]
+
+function isTagImg (formatIndex: number, sizeIndex: number): boolean {
 	let isLastFormat = formatIndex === formats.length - 1
 	let isLastSize = sizeIndex === sizes.length - 1
 
 	return isLastFormat && isLastSize
 }
 
-function getSrcValue (imageName, breakpoint, format) {
-	return `/images/${imageName}${breakpoint ? `~` : ``}${breakpoint}@1x.${format}`
+function getSrcValue (imageName: string, format: string, breakpoint?: number): string {
+	let breakpointSuffix = breakpoint ? `~${breakpoint}` : ``
+	return `/images/${imageName}${breakpointSuffix}@1x.${format}`
 }
 
-function getSrcsetValue (imageName, breakpoint, format, isImg) {
+function getSrcsetValue (isImg: boolean, imageName: string, format: string, breakpoint?: number): string {
 	let srcset = ``
 
 	for (let density = maxDensity; density !== 0; density -= 1) {
 		if (isImg && density === 1) continue
 
-		let sourceName = `${imageName}${breakpoint ? `~` : ``}${breakpoint}@${density}x`
+		let breakpointSuffix = breakpoint ? `~${breakpoint}` : ``
+		let sourceName = `${imageName}${breakpointSuffix}@${density}x`
 		let destPath = `/images/${sourceName}.${format}`
 		let descriptor = density === 1 ? `` : ` ${density}x`
 
@@ -59,12 +48,12 @@ function getSrcsetValue (imageName, breakpoint, format, isImg) {
 <template>
 	<picture v-if="sizes.length">
 		<template v-for="(format, formatIndex) in formats" :key="formatIndex">
-			<template v-for="({ breakpoint = '', width, height }, sizeIndex) in sizes" :key="sizeIndex">
+			<template v-for="({ breakpoint, width, height }, sizeIndex) in sizes" :key="sizeIndex">
 				<img
 					v-if="isTagImg(formatIndex, sizeIndex)"
 					:class="classList"
-					:src="getSrcValue(name, breakpoint, format)"
-					:srcset="getSrcsetValue(name, breakpoint, format, () => isTagImg(formatIndex, sizeIndex))"
+					:src="getSrcValue(name, format, breakpoint)"
+					:srcset="getSrcsetValue(true, name, format, breakpoint)"
 					:width
 					:height
 					:loading
@@ -73,7 +62,7 @@ function getSrcsetValue (imageName, breakpoint, format, isImg) {
 				>
 				<source
 					v-else
-					:srcset="getSrcsetValue(name, breakpoint, format)"
+					:srcset="getSrcsetValue(false, name, format, breakpoint)"
 					:type="`image/${format}`"
 					:width
 					:height

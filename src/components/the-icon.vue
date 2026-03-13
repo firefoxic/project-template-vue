@@ -1,12 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from "vue"
 
-let props = defineProps({
-	shape: {
-		type: String,
-		required: true,
-	},
-})
+let props = defineProps<{
+	shape: string,
+}>()
 
 let computedStyle = computed(() => ({
 	"--icon": `var(--icon-shape-${props.shape})`,
