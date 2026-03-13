@@ -25,7 +25,6 @@ export default defineConfig({
 		},
 	},
 	build: {
-		cssMinify: `lightningcss`,
 		target: browserslistToEsbuild(),
 	},
 	css: {
@@ -36,6 +35,7 @@ export default defineConfig({
 	},
 	clearScreen: false,
 	server: {
+		forwardConsole: true,
 		open: true,
 		port: 3000,
 	},
