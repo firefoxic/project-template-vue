@@ -12,6 +12,9 @@ mergeGitBranchLockfilesBranchPattern:
 
 minimumReleaseAge: 0
 
+patchedDependencies:
+  vite: patches/vite.patch
+
 shellEmulator: true
 
 verifyDepsBeforeRun: install
